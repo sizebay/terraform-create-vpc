@@ -13,10 +13,10 @@ Os recursos eram provisionados na VPC default da AWS, que atribui IPs públicos 
 
 ```
 VPC (10.0.0.0/16)
-├── Subnet pública us-east-1a (10.0.0.0/24)  ← ALB + NAT Gateway
-├── Subnet pública us-east-1b (10.0.1.0/24)  ← ALB
-├── Subnet privada us-east-1a (10.0.2.0/24)  ← EC2 instances
-└── Subnet privada us-east-1b (10.0.3.0/24)  ← EC2 instances
+├── Subnet pública us-east-1a (10.1.0.0/24)  ← ALB + NAT Gateway
+├── Subnet pública us-east-1b (10.1.1.0/24)  ← ALB
+├── Subnet privada us-east-1a (10.1.2.0/24)  ← EC2 instances
+└── Subnet privada us-east-1b (10.1.3.0/24)  ← EC2 instances
 
 Internet Gateway → Route Table pública
 NAT Gateway      → Route Table privada (saída para internet sem IP público)
@@ -43,7 +43,7 @@ terraform apply -var-file="env-production.tfvars"
 | aws\_region | AWS region | string | `"us-east-1"` | no |
 | environment | Environment identifier (e.g. staging, production) | string | n/a | yes |
 | project | Project/company name for tagging and naming | string | n/a | yes |
-| vpc\_cidr | CIDR block for the VPC | string | `"10.0.0.0/16"` | no |
+| vpc\_cidr | CIDR block for the VPC | string | `"10.1.0.0/16"` | no |
 | public\_subnet\_cidrs | CIDRs for public subnets, one per AZ | list(string) | n/a | yes |
 | private\_subnet\_cidrs | CIDRs for private subnets, one per AZ | list(string) | n/a | yes |
 | availability\_zones | Availability zones (must match number of CIDRs) | list(string) | n/a | yes |
